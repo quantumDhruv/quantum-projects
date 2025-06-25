@@ -1,1 +1,99 @@
- This is a simple terminal-based math quiz app that generates random questions using +, -, ×, ÷. Helps practice Class 9 concepts with scoring
+import random
+import time
+
+questions = [
+    {
+        "q": "🧬 What is the basic unit of quantum information?",
+        "options": ["1) Bit", "2) Qubit", "3) Neuron", "4) Photon"],
+        "ans": 2
+    },
+    {
+        "q": "⚛️ What is superposition?",
+        "options": [
+            "1) Particle can be in one state",
+            "2) Particle is duplicated",
+            "3) Particle can exist in multiple states at once",
+            "4) Particle stops existing"
+        ],
+        "ans": 3
+    },
+    {
+        "q": "💡 Who proposed the uncertainty principle?",
+        "options": ["1) Einstein", "2) Bohr", "3) Schrödinger", "4) Heisenberg"],
+        "ans": 4
+    },
+    {
+        "q": "🔀 What is quantum entanglement?",
+        "options": [
+            "1) Two particles lose energy",
+            "2) Two particles become one",
+            "3) Measurement of one affects the other instantly",
+            "4) Opposite spin states only"
+        ],
+        "ans": 3
+    },
+    {
+        "q": "💻 Which Python library is used for quantum computing?",
+        "options": ["1) NumPy", "2) TensorFlow", "3) Qiskit", "4) Matplotlib"],
+        "ans": 3
+    },
+    {
+        "q": "🧠 What does a Hadamard gate do to |0⟩?",
+        "options": [
+            "1) Keeps it same", 
+            "2) Flips it", 
+            "3) Creates superposition", 
+            "4) Measures it"
+        ],
+        "ans": 3
+    },
+    {
+        "q": "🌀 In quantum computing, what does 'collapse' mean?",
+        "options": [
+            "1) Energy loss", 
+            "2) Qubit changes state randomly",
+            "3) Superposition becomes a definite state",
+            "4) Entanglement breaks"
+        ],
+        "ans": 3
+    }
+]
+
+print("⚛️ Welcome to the Ultimate Quantum Quiz Challenge ⚛️")
+print("👑 Brought to you by Monarch Dhruv\n")
+score = 0
+start_time = time.time()
+
+random.shuffle(questions)
+
+for i, q in enumerate(questions, 1):
+    print(f"\nQ{i}: {q['q']}")
+    for opt in q['options']:
+        print(opt)
+    try:
+        ans = int(input("Your answer (1-4): "))
+        if ans == q['ans']:
+            print("✅ Correct!")
+            score += 1
+        else:
+            print(f"❌ Wrong! Correct answer was {q['ans']}")
+    except:
+        print("⚠️ Invalid input. Skipped.")
+
+end_time = time.time()
+duration = round(end_time - start_time, 2)
+
+print("\n📊 Final Score:", score, "/", len(questions))
+print("⏱️ Time Taken:", duration, "seconds")
+
+# Rank system
+if score == len(questions):
+    rank = "Quantum Overlord 👑"
+elif score >= len(questions) - 2:
+    rank = "Quantum Commander ⚔️"
+elif score >= len(questions) // 2:
+    rank = "Quantum Learner 📘"
+else:
+    rank = "Classical Thinker 🧱"
+
+print("🏅 Rank Achieved:", rank)
